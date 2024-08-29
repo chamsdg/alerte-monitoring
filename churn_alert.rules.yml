@@ -1,0 +1,11 @@
+groups:
+  - name: churn-alerts
+    rules:
+      - alert: HighChurnProbability
+        expr: churn_probability > 50
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High churn probability for customer"
+          description: "Customer with ID {{ $labels.customer_id }} has a churn probability of {{ $value }}%."

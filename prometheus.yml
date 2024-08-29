@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 15s  # Intervalle pour collecter les métriques
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['192.168.179.100:9093']  # Adresse et port de votre instance Alertmanager
+
+rule_files:
+  - "C:/Users/caidara01/monitoring-master/prometheus/churn_alert.rules.yml"
+  # Fichier contenant les règles d'alerte
+
+scrape_configs:
+  - job_name: 'alert-churn'
+    static_configs:
+      - targets: ['192.168.179.200:8006']  # Port où les métriques sont exposées
